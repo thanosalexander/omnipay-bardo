@@ -33,7 +33,7 @@
     },
     "extra": {
         "branch-alias": {
-            "master": "1."
+            "master": "1.0.*"
         }
     }
 }

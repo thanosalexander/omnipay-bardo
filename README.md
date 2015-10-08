@@ -14,7 +14,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "omnipay/pin": "~2.0"
+        "omnipay/bardo": "~1.0"
     }
 }
 ```

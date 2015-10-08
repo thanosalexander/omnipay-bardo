@@ -1,5 +1,5 @@
 {
-    "name": "omnipay/bardo",
+    "name": "ivantoz/omnipay-bardo",
     "type": "library",
     "description": "Bardo Payments driver for the Omnipay payment processing library",
     "keywords": [

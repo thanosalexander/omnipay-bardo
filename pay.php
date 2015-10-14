@@ -1,5 +1,6 @@
 <?php
 
+
  if (isset($_GET['CUSTOMER_FIRST_NAME'])){
  $fname = $_GET['CUSTOMER_FIRST_NAME'];
  $lname = $_GET['CUSTOMER_LAST_NAME'];

@@ -9,8 +9,8 @@ use Omnipay\Common\Message\AbstractRequest;
  */
 class PurchaseRequest extends AbstractRequest
 {
-    protected $liveEndpoint = 'http://localhost/bard/omni.php';
-    protected $testEndpoint = 'http://localhost/bard/omni.php';
+    protected $liveEndpoint = 'http://localhost/bard/pay.php';
+    protected $testEndpoint = 'http://localhost/bard/pay.php';
 
     public function getShopId()
     {

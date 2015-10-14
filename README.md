@@ -4,7 +4,7 @@
 
 
 [Omnipay](https://github.com/omnipay/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP 5.3+. This package implements Pin support for Omnipay.
+processing library for PHP 5.3+. This package implements Bardo support for Omnipay.
 
 ## Installation
 
@@ -22,7 +22,7 @@ to your `composer.json` file:
 And run composer to update your dependencies:
 
     $ curl -s http://getcomposer.org/installer | php
-    $ php composer.phar update
+    $ php composer.phar update or composer update
 
 ## Basic Usage
 

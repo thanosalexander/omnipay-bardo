@@ -3,7 +3,8 @@
 namespace Omnipay\Bardo;
 
 use Omnipay\Common\AbstractGateway;
-use Omnipay\Bardo\Message\PurchaseRequest;
+
+ 
 
 /**
  * Bardo Gateway
@@ -20,23 +21,27 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return array(
-            'SHOP_ID' => '',
+            'shopId' => '',
             'testMode' => false,
         );
     }
 
     public function getShopId()
     {
-        return $this->getParameter('SHOP_ID');
+        return $this->getParameter('shopdId');
     }
 
     public function setShopId($value)
     {
-        return $this->setParameter('SHOP_ID', $value);
+        return $this->setParameter('shopdId', $value);
     }
 
     public function purchase(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\Bardo\Message\PurchaseRequest', $parameters);
+    }
+	public function completePurchase(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Bardo\Message\CompletePurchaseRequest', $parameters);
     }
 }

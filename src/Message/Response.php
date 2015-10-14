@@ -3,30 +3,52 @@
 namespace Omnipay\Bardo\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
+use Omnipay\Common\Message\RequestInterface;
+use Omnipay\Common\Message\RedirectResponseInterface;
 
 /**
- * Pin Response
+ * Migs Purchase Response
  */
-class Response extends AbstractResponse
+class Response extends AbstractResponse implements RedirectResponseInterface
 {
+    protected $redirectUrl;
+
+    public function __construct(RequestInterface $request, $data, $redirectUrl)
+    {
+        parent::__construct($request, $data);
+        $this->redirectUrl = $redirectUrl;
+    }
+
     public function isSuccessful()
     {
-        return !isset($this->data['error']);
+        return false;
     }
 
-    public function getTransactionReference()
+    public function isRedirect()
     {
-        if (isset($this->data['response']['SHOP_NUMBER'])) {
-            return $this->data['response']['SHOP_NUMBER'];
-        }
+        return true;
     }
 
-    public function getMessage()
+    public function getRedirectUrl()
     {
-        if ($this->isSuccessful()) {
-            return $this->data['response']['TRANSAC_STATUS'];
-        } else {
-            return $this->data['etat'];
-        }
+        return $this->redirectUrl;
+    }
+
+    public function getRedirectMethod()
+    {
+        return 'GET';
+    }
+
+    public function getRedirectData()
+    {
+        return $this->getData();
+    }
+	 public function getTransactionReference()
+    {
+        return isset($this->data['SHOP_NUMBER']) ? $this->data['SHOP_NUMBER'] : null;
+    }
+	 public function getMessage()
+    {
+        return isset($this->data['redirect_msg']) ? $this->data['redirect_msg'] : null;
     }
 }

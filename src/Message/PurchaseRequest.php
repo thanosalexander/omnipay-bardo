@@ -9,8 +9,8 @@ use Omnipay\Common\Message\AbstractRequest;
  */
 class PurchaseRequest extends AbstractRequest
 {
-    protected $liveEndpoint = 'http://localhost/bard/pay.php';
-    protected $testEndpoint = 'http://localhost/bard/pay.php';
+    protected $liveEndpoint = 'https://bardo.com/pay/payment.php';
+    protected $testEndpoint = 'https://bardo.com/pay/payment.php';
 
     public function getShopId()
     {
@@ -44,11 +44,6 @@ class PurchaseRequest extends AbstractRequest
         } else {
             //$this->getCard()->validate();
 
-            $data['card']['CB_NUMBER'] = $this->getCard()->getNumber();
-            $data['card']['CB_MONTH'] = $this->getCard()->getExpiryMonth();
-            $data['card']['CB_YEAR'] = $this->getCard()->getExpiryYear();
-            $data['card']['CB_CVC'] = $this->getCard()->getCvv();
-			$data['card']['CB_TYPE'] = $this->getCard()->getBrand();
             $data['card']['CUSTOMER_FIRST_NAME'] = $this->getCard()->getFirstName();
 			$data['card']['CUSTOMER_LAST_NAME'] = $this->getCard()->getLastName();
             $data['card']['CUSTOMER_ADDRESS'] = $this->getCard()->getAddress1();
@@ -83,11 +78,6 @@ class PurchaseRequest extends AbstractRequest
 		$languagecode =  $data['LANGUAGE_CODE'];
 		$address =  $data['card']['CUSTOMER_ADDRESS'];
 		$transactionId =  $data['SHOP_NUMBER'];
-		$cardnumber =  $data['card']['CB_NUMBER'];
-		$expiryMonth =  $data['card']['CB_MONTH'];
-		$expiryYear =  $data['card']['CB_YEAR'];
-		$cvv =  $data['card']['CB_CVC'];
-		$cardtype =  $data['card']['CB_TYPE'];
 		$city =  $data['card']['CUSTOMER_CITY'];
 		$zipcode =  $data['card']['CUSTOMER_ZIP_CODE'];
 		$state =  $data['card']['CUSTOMER_STATE'];
@@ -96,7 +86,10 @@ class PurchaseRequest extends AbstractRequest
 		//$shopId = $this->$data['SHOP_ID'];
 		$returnUrl= $data['URL_RETURN'];
 	
-		$redirectUrl = $this->getEndpoint().'?'.'SHOP_ID=BARDO_TEST&SHOP_NUMBER='.$transactionId.'&CUSTOMER_FIRST_NAME='.$fname.'&CUSTOMER_LAST_NAME='.$lname.'&CUSTOMER_EMAIL='.$email.'&CUSTOMER_ADDRESS='.$address.'&CUSTOMER_CITY='.$city.'&CUSTOMER_COUNTRY=KE&CUSTOMER_PHONE='.$phone.'&CUSTOMER_ZIP_CODE='.$zipcode.'&CUSTOMER_STATE='.$state.'&LANGUAGE_CODE='.$languagecode.'&PRODUCT_NAME='.$productname.'&CUSTOMER_IP='.$ip.'&TRANSAC_AMOUNT='.$amount.'&CURRENCY_CODE='.$currency;
+		 $redirectUrl = $this->getEndpoint().'?'.'SHOP_ID=BARDO_TEST&SHOP_NUMBER='.$transactionId.'&CUSTOMER_FIRST_NAME='.$fname.'&CUSTOMER_LAST_NAME='.$lname.'&CUSTOMER_EMAIL='.$email.'&CUSTOMER_ADDRESS='.$address.'&CUSTOMER_CITY='.$city.'&CUSTOMER_COUNTRY=SG&CUSTOMER_PHONE='.$phone.'&CUSTOMER_ZIP_CODE='.$zipcode.'&CUSTOMER_STATE='.$state.'&LANGUAGE_CODE='.$languagecode.'&PRODUCT_NAME='.$productname.'&CUSTOMER_IP='.$ip.'&TRANSAC_AMOUNT='.$amount.'&CURRENCY_CODE='.$currency;
+		
+		//$redirectUrl = $this->getEndpoint().'?'.http_build_query($data);
+		
 		
 		return $this->response = new Response($this, $data, $redirectUrl);
 		

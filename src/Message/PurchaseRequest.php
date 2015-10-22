@@ -43,24 +43,24 @@ class PurchaseRequest extends AbstractRequest
 			$data['card_token'] = $this->getToken();
 		}
 		elseif($this->getCard()) {
-			$data['card']['CUSTOMER_FIRST_NAME'] = $this->getCard()->getFirstName();
-			$data['card']['CUSTOMER_LAST_NAME'] = $this->getCard()->getLastName();
-			$data['card']['CUSTOMER_ADDRESS'] = $this->getCard()->getAddress1();
-			$data['card']['CUSTOMER_CITY'] = $this->getCard()->getCity();
-			$data['card']['CUSTOMER_ZIP_CODE'] = $this->getCard()->getPostcode();
-			$data['card']['CUSTOMER_STATE'] = $this->getCard()->getState();
-			$data['card']['CUSTOMER_COUNTRY'] = $this->getCard()->getCountry();
-			$data['card']['CUSTOMER_PHONE'] = $this->getCard()->getbillingPhone(); 
+			$data['CUSTOMER_FIRST_NAME'] = $this->getCard()->getFirstName();
+			$data['CUSTOMER_LAST_NAME'] = $this->getCard()->getLastName();
+			$data['CUSTOMER_ADDRESS'] = $this->getCard()->getAddress1();
+			$data['CUSTOMER_CITY'] = $this->getCard()->getCity();
+			$data['CUSTOMER_ZIP_CODE'] = $this->getCard()->getPostcode();
+			$data['CUSTOMER_STATE'] = $this->getCard()->getState();
+			$data['CUSTOMER_COUNTRY'] = $this->getCard()->getCountry();
+			$data['CUSTOMER_PHONE'] = $this->getCard()->getbillingPhone(); 
 		}
 		else{
-			$data['card']['CUSTOMER_FIRST_NAME'] = '';
-			$data['card']['CUSTOMER_LAST_NAME'] = '';
-			$data['card']['CUSTOMER_ADDRESS'] = '';
-			$data['card']['CUSTOMER_CITY'] = '';
-			$data['card']['CUSTOMER_ZIP_CODE'] = '';
-			$data['card']['CUSTOMER_STATE'] = '';
-			$data['card']['CUSTOMER_COUNTRY'] = '';
-			$data['card']['CUSTOMER_PHONE'] = '';
+			$data['CUSTOMER_FIRST_NAME'] = '';
+			$data['CUSTOMER_LAST_NAME'] = '';
+			$data['CUSTOMER_ADDRESS'] = '';
+			$data['CUSTOMER_CITY'] = '';
+			$data['CUSTOMER_ZIP_CODE'] = '';
+			$data['CUSTOMER_STATE'] = '';
+			$data['CUSTOMER_COUNTRY'] = '';
+			$data['CUSTOMER_PHONE'] = '';
 		}
 
 		return $data;
@@ -86,18 +86,19 @@ class PurchaseRequest extends AbstractRequest
 		$languagecode = $data['LANGUAGE_CODE'];
 		$transactionId = $data['SHOP_NUMBER'];
 		
-		$fname = $data['card']['CUSTOMER_FIRST_NAME'];
-		$lname = $data['card']['CUSTOMER_LAST_NAME'];
-		$address = $data['card']['CUSTOMER_ADDRESS'];
-		$city = $data['card']['CUSTOMER_CITY'];
-		$zipcode = $data['card']['CUSTOMER_ZIP_CODE'];
-		$state = $data['card']['CUSTOMER_STATE'];
-		$country = $data['card']['CUSTOMER_COUNTRY'];
-		$phone = $data['card']['CUSTOMER_PHONE'];
+		$fname = $data['CUSTOMER_FIRST_NAME'];
+		$lname = $data['CUSTOMER_LAST_NAME'];
+		$address = $data['CUSTOMER_ADDRESS'];
+		$city = $data['CUSTOMER_CITY'];
+		$zipcode = $data['CUSTOMER_ZIP_CODE'];
+		$state = $data['CUSTOMER_STATE'];
+		$country = $data['CUSTOMER_COUNTRY'];
+		$phone = $data['CUSTOMER_PHONE'];
 		
 		$returnUrl = $data['URL_RETURN'];
 	
-		$redirectUrl = $this->getEndpoint().'?'.'SHOP_ID='.$this->getShopId().'&SHOP_NUMBER='.$transactionId.'&CUSTOMER_FIRST_NAME='.$fname.'&CUSTOMER_LAST_NAME='.$lname.'&CUSTOMER_EMAIL='.$email.'&CUSTOMER_ADDRESS='.$address.'&CUSTOMER_CITY='.$city.'&CUSTOMER_COUNTRY=SG&CUSTOMER_PHONE='.$phone.'&CUSTOMER_ZIP_CODE='.$zipcode.'&CUSTOMER_STATE='.$state.'&LANGUAGE_CODE='.$languagecode.'&PRODUCT_NAME='.$productname.'&CUSTOMER_IP='.$ip.'&TRANSAC_AMOUNT='.$amount.'&CURRENCY_CODE='.$currency;
+		// $redirectUrl = $this->getEndpoint().'?SHOP_ID='.$this->getShopId().'&SHOP_NUMBER='.$transactionId.'&CUSTOMER_FIRST_NAME='.$fname.'&CUSTOMER_LAST_NAME='.$lname.'&CUSTOMER_EMAIL='.$email.'&CUSTOMER_ADDRESS='.$address.'&CUSTOMER_CITY='.$city.'&CUSTOMER_COUNTRY=SG&CUSTOMER_PHONE='.$phone.'&CUSTOMER_ZIP_CODE='.$zipcode.'&CUSTOMER_STATE='.$state.'&LANGUAGE_CODE='.$languagecode.'&PRODUCT_NAME='.$productname.'&CUSTOMER_IP='.$ip.'&TRANSAC_AMOUNT='.$amount.'&CURRENCY_CODE='.$currency;
+		 $redirectUrl = $this->getEndpoint().'?'.http_build_query($data);
 		
 		return $this->response = new Response($this, $data, $redirectUrl);
 	}

@@ -9,7 +9,7 @@ use Omnipay\Common\AbstractGateway;
 /**
  * Bardo Gateway
  *
- * @link https://pin.net.au/docs/api
+ * @link https://bardo.com/docs/
  */
 class Gateway extends AbstractGateway
 {
@@ -21,7 +21,7 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return array(
-            'shopId' => '',
+            'shopId' => 'BARDO_TEST',
             'testMode' => false,
         );
     }

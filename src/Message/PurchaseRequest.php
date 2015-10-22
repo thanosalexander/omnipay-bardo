@@ -36,7 +36,7 @@ class PurchaseRequest extends AbstractRequest
 		$data['SHOP_NUMBER'] = $this->getTransactionId(); 
 		$data['URL_RETURN'] = $this->getReturnUrl(); 
 		$data['redirect_msg'] = 'Redirecting Now';
-		//$data['SHOP_ID'] = $this->getShopId();
+		// $data['SHOP_ID'] = $this->getShopId();
 		
 		
 		if ($this->getToken()) {
@@ -98,7 +98,7 @@ class PurchaseRequest extends AbstractRequest
 		$returnUrl = $data['URL_RETURN'];
 	
 		// $redirectUrl = $this->getEndpoint().'?SHOP_ID='.$this->getShopId().'&SHOP_NUMBER='.$transactionId.'&CUSTOMER_FIRST_NAME='.$fname.'&CUSTOMER_LAST_NAME='.$lname.'&CUSTOMER_EMAIL='.$email.'&CUSTOMER_ADDRESS='.$address.'&CUSTOMER_CITY='.$city.'&CUSTOMER_COUNTRY=SG&CUSTOMER_PHONE='.$phone.'&CUSTOMER_ZIP_CODE='.$zipcode.'&CUSTOMER_STATE='.$state.'&LANGUAGE_CODE='.$languagecode.'&PRODUCT_NAME='.$productname.'&CUSTOMER_IP='.$ip.'&TRANSAC_AMOUNT='.$amount.'&CURRENCY_CODE='.$currency;
-		 $redirectUrl = $this->getEndpoint().'?'.http_build_query($data);
+		 $redirectUrl = $this->getEndpoint().'?SHOP_ID='.$this->getShopId().http_build_query($data);
 		
 		return $this->response = new Response($this, $data, $redirectUrl);
 	}

@@ -33,8 +33,9 @@ class PurchaseRequest extends AbstractRequest
 		$data['CUSTOMER_IP'] = $this->getClientIp();
 		$data['CUSTOMER_EMAIL'] = $this->getCard()->getEmail();
 		$data['LANGUAGE_CODE'] = 'ENG';
-		$data['SHOP_NUMBER'] = $this->getTransactionId(); 
-		$data['URL_RETURN'] = $this->getReturnUrl(); 
+		$data['SHOP_NUMBER'] = $this->getTransactionId();
+		$data['URL_RETURN'] = $this->getReturnUrl();
+		$data['URL_CANCEL'] = $this->getCancelUrl();
 		$data['redirect_msg'] = 'Redirecting Now';
 		// $data['SHOP_ID'] = $this->getShopId();
 		

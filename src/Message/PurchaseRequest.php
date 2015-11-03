@@ -51,7 +51,7 @@ class PurchaseRequest extends AbstractRequest
 			$data['CUSTOMER_ZIP_CODE'] = $this->getCard()->getPostcode();
 			$data['CUSTOMER_STATE'] = $this->getCard()->getState();
 			$data['CUSTOMER_COUNTRY'] = $this->getCard()->getCountry();
-			$data['CUSTOMER_PHONE'] = $this->getCard()->getbillingPhone(); 
+			$data['CUSTOMER_PHONE'] = $this->getCard()->getbillingPhone();
 		}
 		else{
 			$data['CUSTOMER_FIRST_NAME'] = '';

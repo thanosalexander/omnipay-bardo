@@ -36,7 +36,7 @@ class PurchaseRequest extends AbstractRequest
 		$data['URL_RETURN'] = $this->getReturnUrl();
 		$data['URL_CANCEL'] = $this->getCancelUrl();
 		$data['redirect_msg'] = 'Redirecting Now';
-		// $data['SHOP_ID'] = $this->getShopId();
+		$data['SHOP_ID'] = $this->getShopId();
 		
 		
 		if ($this->getToken()) {
@@ -98,7 +98,7 @@ class PurchaseRequest extends AbstractRequest
 		
 		$returnUrl = $data['URL_RETURN'];
 	
-		$redirectUrl = $this->getEndpoint().'?SHOP_ID='.$this->getShopId().'&'.http_build_query($data);
+		$redirectUrl = $this->getEndpoint();
 		
 		return $this->response = new Response($this, $data, $redirectUrl);
 	}

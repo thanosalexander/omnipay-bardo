@@ -33,7 +33,11 @@ class PurchaseRequest extends AbstractRequest
 		$data['CUSTOMER_IP'] = $this->getClientIp();
 		$data['LANGUAGE_CODE'] = 'ENG';
 		$data['SHOP_NUMBER'] = $this->getTransactionId();
-		$data['URL_RETURN'] = $this->getReturnUrl();
+		if (!is_null($this->getReturnUrl()))
+		{
+			$data['URL_RETURN'] = $this->getReturnUrl();
+		}
+		$data['URL_DISPLAY'] = $this->getDisplayUrl();
 		$data['URL_CANCEL'] = $this->getCancelUrl();
 		$data['redirect_msg'] = 'Redirecting Now';
 		$data['SHOP_ID'] = $this->getShopId();

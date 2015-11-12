@@ -31,7 +31,6 @@ class PurchaseRequest extends AbstractRequest
 		$data['CURRENCY_CODE'] = strtoupper ($this->getCurrency());
 		$data['PRODUCT_NAME'] = $this->getDescription();
 		$data['CUSTOMER_IP'] = $this->getClientIp();
-		$data['CUSTOMER_EMAIL'] = $this->getCard()->getEmail();
 		$data['LANGUAGE_CODE'] = 'ENG';
 		$data['SHOP_NUMBER'] = $this->getTransactionId();
 		$data['URL_RETURN'] = $this->getReturnUrl();
@@ -44,6 +43,7 @@ class PurchaseRequest extends AbstractRequest
 			$data['card_token'] = $this->getToken();
 		}
 		elseif($this->getCard()) {
+			$data['CUSTOMER_EMAIL'] = $this->getCard()->getEmail();
 			$data['CUSTOMER_FIRST_NAME'] = $this->getCard()->getFirstName();
 			$data['CUSTOMER_LAST_NAME'] = $this->getCard()->getLastName();
 			$data['CUSTOMER_ADDRESS'] = $this->getCard()->getAddress1();

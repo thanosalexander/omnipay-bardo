@@ -12,20 +12,17 @@ class CompletePurchaseRequest extends AbstractRequest
 {
     public function getData()
     {
-		
-        
 		$shop = $this->httpRequest->query->all();
 		$shopnumber = $shop['SHOP_NUMBER'];
-        
-		
+
 		$data = $this->httpClient->post('https://pay.bardo-gateway.com/trm/TransactionHandler.ashx')
-		->setPostField('UserName', 'your_given_username')
-		->setPostField('Password', 'your_given_password')
+		->setPostField('UserName', $this->getParameter('username'))
+		->setPostField('Password', $this->getParameter('password'))
 		->setPostField('SHOP_NUMBER', $shopnumber)
 		->send();
-		
+
 		return $data;
-		
+
     }
 
     public function sendData($data)

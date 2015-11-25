@@ -14,10 +14,16 @@ class CompletePurchaseRequest extends AbstractRequest
     {
 		$shop = $this->httpRequest->query->all();
 		$shopnumber = $shop['SHOP_NUMBER'];
+		$username = $this->getParameter('username');
+		$password = $this->getParameter('password');
+
+		if (is_null($username) or is_null($password)) {
+			throw new \Exception("Missing username or password", 1);
+		}
 
 		$data = $this->httpClient->post('https://pay.bardo-gateway.com/trm/TransactionHandler.ashx')
-		->setPostField('UserName', $this->getParameter('username'))
-		->setPostField('Password', $this->getParameter('password'))
+		->setPostField('UserName', $username)
+		->setPostField('Password', $password)
 		->setPostField('SHOP_NUMBER', $shopnumber)
 		->send();
 

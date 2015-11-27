@@ -12,8 +12,7 @@ class CompletePurchaseRequest extends AbstractRequest
 {
     public function getData()
     {
-		$shop = $this->httpRequest->query->all();
-		$shopnumber = $shop['SHOP_NUMBER'];
+		$shopnumber = $this->getParameter('transactionId');
 		$username = $this->getParameter('username');
 		$password = $this->getParameter('password');
 
@@ -40,4 +39,24 @@ class CompletePurchaseRequest extends AbstractRequest
     {
         return $this->endpoint;
     }
+
+	public function setUsername($value)
+	{
+		$this->setParameter('username', $value);
+	}
+
+	public function getUsername()
+	{
+		$this->getParameter('username');
+	}
+
+	public function setPassword($value)
+	{
+		$this->setParameter('password', $value);
+	}
+
+	public function getPassword()
+	{
+		$this->getParameter('password');
+	}
 }

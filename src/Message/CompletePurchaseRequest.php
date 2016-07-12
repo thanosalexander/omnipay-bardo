@@ -15,6 +15,7 @@ class CompletePurchaseRequest extends AbstractRequest
 		$shopnumber = $this->getParameter('transactionId');
 		$username = $this->getParameter('username');
 		$password = $this->getParameter('password');
+		$clientid = $this->getParameter('clientid');
 
 		if (is_null($username) or is_null($password)) {
 			throw new \Exception("Missing username or password", 1);
@@ -24,6 +25,7 @@ class CompletePurchaseRequest extends AbstractRequest
 		->setPostField('UserName', $username)
 		->setPostField('Password', $password)
 		->setPostField('SHOP_NUMBER', $shopnumber)
+		->setPostField('ClientId', $clientid)
 		->send();
 
 		return $data;
@@ -58,5 +60,13 @@ class CompletePurchaseRequest extends AbstractRequest
 	public function getPassword()
 	{
 		$this->getParameter('password');
+	}
+	public function setClientId($value)
+	{
+		$this->setParameter('clientid', $value);
+	}
+	public function getClientId()
+	{
+		$this->getParameter('clientid');
 	}
 }

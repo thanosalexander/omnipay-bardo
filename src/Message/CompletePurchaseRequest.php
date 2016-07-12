@@ -20,6 +20,9 @@ class CompletePurchaseRequest extends AbstractRequest
 		if (is_null($username) or is_null($password)) {
 			throw new \Exception("Missing username or password", 1);
 		}
+		if (is_null($clientid)) {
+			throw new \Exception("Missing clientid", 1);
+		}
 
 		$data = $this->httpClient->post('https://pay.bardo-gateway.com/trm/TransactionHandler.ashx')
 		->setPostField('UserName', $username)

@@ -28,12 +28,12 @@ class Gateway extends AbstractGateway
 
     public function getShopId()
     {
-        return $this->getParameter('shopdId');
+        return $this->getParameter('shopId');
     }
 
     public function setShopId($value)
     {
-        return $this->setParameter('shopdId', $value);
+        return $this->setParameter('shopId', $value);
     }
 
     public function purchase(array $parameters = array())
